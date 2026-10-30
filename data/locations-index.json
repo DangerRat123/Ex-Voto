@@ -3,7 +3,7 @@
     { "id": "location-1", "name": "Location 1", "description": "A collection of wooden bridges winding their way through a misty and damp fog.", "thumbnail": "assets/location-icons/01.png", "dataFile": "data/locations/location1.json" },
     { "id": "location-2", "name": "Location 2", "description": "A labyrinth of shipping containers, silent but for wind and the creak of rusted metal.", "thumbnail": "assets/location-icons/02.png", "dataFile": "data/locations/location2.json" },
     { "id": "location-3", "name": "Location 3", "description": "A windy path through a fort built into a smisty and dark mountian path.", "thumbnail": "assets/location-icons/03.png", "dataFile": "data/locations/location3.json" },
-    { "id": "location-4", "name": "Location 4", "description": "This path has not been built yet.", "thumbnail": "assets/location-icons/04.png", "dataFile": "data/locations/location4.json" },
+    { "id": "location-4", "name": "Location 4", "description": "An abandoned wooden fortification clad in brown smoke and industrial debris.", "thumbnail": "assets/location-icons/04.png", "dataFile": "data/locations/location4.json" },
     { "id": "location-5", "name": "Location 5", "description": "This path has not been built yet.", "thumbnail": "assets/location-icons/05.png", "dataFile": "data/locations/location5.json" },
     { "id": "location-6", "name": "Location 6", "description": "This path has not been built yet.", "thumbnail": "assets/location-icons/06.png", "dataFile": "data/locations/location6.json" }
   ]
