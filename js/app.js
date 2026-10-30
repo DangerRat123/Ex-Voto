@@ -96,7 +96,12 @@ function setupItemGrid() {
   el.itemGrid.innerHTML = "";
   itemBoxes = [];
   selectedItemIndex = null;
-  el.bringItemBtn.disabled = true;
+    el.bringItemBtn.disabled = true;
+  // A canvas can't get a fresh WebGL context once its old one was shut
+  // down, so give the preview a brand new canvas each time.
+  const freshPreview = el.itemPreviewCanvas.cloneNode(false);
+  el.itemPreviewCanvas.replaceWith(freshPreview);
+  el.itemPreviewCanvas = freshPreview;
   el.itemPreviewName.textContent = "Select an item";
   el.itemPreviewCanvas.classList.remove("hidden");
   el.itemPreviewFallback.classList.add("hidden");
@@ -212,6 +217,7 @@ function setupCarousel(locations) {
   carouselRotationSteps = 0;
   carouselCards = [];
   el.carouselTrack.innerHTML = "";
+  el.choosePathBtn.disabled = false;
 
   locations.forEach((loc) => {
     const card = document.createElement("div");
@@ -253,7 +259,7 @@ function setupCarousel(locations) {
 
   const len = carouselLocations.length;
   carouselAngleStep = 360 / len;
-  const cardWidth = carouselCards[0].element.getBoundingClientRect().width;
+    const cardWidth = carouselCards[0].element.offsetWidth;
   carouselRadius = (cardWidth / 2) / Math.tan(Math.PI / len);
 
   carouselCards.forEach((card, i) => {
