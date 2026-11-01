@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Printer test</title>
+<style>
+  body { background:#0a0908; color:#ede6d6; font-family:monospace; max-width:720px; margin:2rem auto; padding:0 1rem; line-height:1.5; }
+  h1 { font-size:1.4rem; letter-spacing:0.05em; }
+  p.note { color:#8c8577; font-size:0.9rem; }
+  fieldset { border:1px solid rgba(237,230,214,0.3); margin:1rem 0; padding:0.75rem 1rem 1rem; }
+  legend { padding:0 0.5rem; }
+  button { background:#ede6d6; color:#16130f; border:0; padding:0.55rem 1rem; margin:0.25rem 0.25rem 0.25rem 0; font-family:inherit; font-size:0.95rem; cursor:pointer; }
+  button:hover:not(:disabled) { background:#fff; }
+  button:disabled { background:#4a463e; color:#8c8577; cursor:not-allowed; }
+  select, input[type=number], textarea { background:#16130f; color:#ede6d6; border:1px solid rgba(237,230,214,0.3); font-family:inherit; font-size:0.95rem; padding:0.3rem; }
+  input[type=number] { width:5rem; }
+  textarea { width:100%; height:6rem; box-sizing:border-box; margin-bottom:0.5rem; }
+  label { margin-right:1rem; }
+  #status { padding:0.5rem 0.75rem; border:1px solid rgba(237,230,214,0.3); margin:1rem 0; }
+  #status.ok { border-color:#7fae7f; color:#b9e0b9; }
+  #status.bad { border-color:#c96a4a; color:#e8a58f; }
+  #log { white-space:pre-wrap; background:#16130f; padding:0.75rem; height:11rem; overflow:auto; font-size:0.85rem; border:1px solid rgba(237,230,214,0.2); }
+</style>
+</head>
+<body>
+
+<h1>Printer test</h1>
+<p class="note">Chrome or Edge on a desktop computer only. Power the printer on first, then click Connect and choose the USB serial device (often shown as a PL2303 or "USB-Serial" port).</p>
+
+<div id="status" class="bad">Not connected</div>
+
+<fieldset>
+  <legend>1. Connection</legend>
+  <label>Baud rate
+    <select id="baud">
+      <option value="9600" selected>9600</option>
+      <option value="19200">19200</option>
+      <option value="115200">115200</option>
+    </select>
+  </label>
+  <button id="connect">Connect printer</button>
+  <button id="disconnect" disabled>Disconnect</button>
+</fieldset>
+
+<fieldset>
+  <legend>2. Print settings</legend>
+  <label>Characters per line <input type="number" id="cols" value="32" min="16" max="48"></label>
+  <label>Delay per line (ms) <input type="number" id="delay" value="100" min="0" max="1000"></label>
+  <p class="note">If text comes out garbled or lines go missing, raise the delay. If lines wrap oddly, change the characters per line.</p>
+</fieldset>
+
+<fieldset>
+  <legend>3. Tests</legend>
+  <button class="needs-printer" id="hello" disabled>Print a test line</button>
+  <button class="needs-printer" id="sample" disabled>Print a sample receipt</button>
+  <button class="needs-printer" id="chars" disabled>Print a character test</button>
+  <button class="needs-printer" id="feed" disabled>Feed 4 lines</button>
+  <p class="note">Or print your own text (it gets word-wrapped to the line width above):</p>
+  <textarea id="custom">You begin your journey on a dock leading to a collection of intertwined wooden platforms. Their stability is questionable but you must navigate them.</textarea>
+  <button class="needs-printer" id="printCustom" disabled>Print this text</button>
+</fieldset>
+
+<fieldset>
+  <legend>Log</legend>
+  <div id="log"></div>
+</fieldset>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const els = {
+  status: $("status"), baud: $("baud"), connect: $("connect"), disconnect: $("disconnect"),
+  cols: $("cols"), delay: $("delay"), custom: $("custom"), log: $("log"),
+};
+
+let port = null;
+let writer = null;
+
+function log(msg) {
+  const time = new Date().toLocaleTimeString();
+  els.log.textContent += `[${time}] ${msg}\n`;
+  els.log.scrollTop = els.log.scrollHeight;
+}
+
+function setStatus(text, ok) {
+  els.status.textContent = text;
+  els.status.className = ok ? "ok" : "bad";
+}
+
+function setConnected(connected) {
+  document.querySelectorAll(".needs-printer").forEach((b) => (b.disabled = !connected));
+  els.disconnect.disabled = !connected;
+  els.connect.disabled = connected;
+}
+
+// ---- ESC/POS basics -------------------------------------------------
+const ESC = 0x1b;
+const CMD = {
+  init: [ESC, 0x40],
+  boldOn: [ESC, 0x45, 1],
+  boldOff: [ESC, 0x45, 0],
+  alignLeft: [ESC, 0x61, 0],
+  alignCenter: [ESC, 0x61, 1],
+  feed: (n) => [ESC, 0x64, n],
+};
+
+const encoder = new TextEncoder();
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const cols = () => Number(els.cols.value) || 32;
+
+// These printers only understand plain ASCII. Curly quotes, long dashes
+// and similar characters would print as garbage, so swap them for plain
+// equivalents (and anything else unknown becomes "?").
+function toAscii(text) {
+  const map = {
+    "\u2018": "'", "\u2019": "'", "\u201C": '"', "\u201D": '"',
+    "\u2013": "-", "\u2014": "-", "\u2026": "...", "\u00A0": " ",
+  };
+  return text
+    .replace(/[\u2018\u2019\u201C\u201D\u2013\u2014\u2026\u00A0]/g, (ch) => map[ch])
+    .replace(/[^\n\x20-\x7E]/g, "?");
+}
+
+function wrap(text, width) {
+  const lines = [];
+  text.split("\n").forEach((paragraph) => {
+    let line = "";
+    paragraph.split(/\s+/).filter(Boolean).forEach((word) => {
+      while (word.length > width) {
+        if (line) { lines.push(line); line = ""; }
+        lines.push(word.slice(0, width));
+        word = word.slice(width);
+      }
+      if (!line) line = word;
+      else if ((line + " " + word).length <= width) line += " " + word;
+      else { lines.push(line); line = word; }
+    });
+    lines.push(line);
+  });
+  return lines;
+}
+
+async function sendBytes(bytes) {
+  if (!writer) throw new Error("Printer not connected");
+  await writer.write(Uint8Array.from(bytes));
+}
+
+async function sendLine(text) {
+  if (!writer) throw new Error("Printer not connected");
+  await writer.write(encoder.encode(text + "\n"));
+  const delay = Number(els.delay.value) || 0;
+  if (delay) await sleep(delay);
+}
+
+async function printWrapped(text) {
+  for (const line of wrap(toAscii(text), cols())) await sendLine(line);
+}
+
+// ---- Connection -----------------------------------------------------
+async function openPort(p) {
+  const baudRate = Number(els.baud.value);
+  await p.open({ baudRate });
+  port = p;
+  writer = port.writable.getWriter();
+  await sendBytes(CMD.init);
+  setStatus(`Connected at ${baudRate} baud`, true);
+  setConnected(true);
+  log(`Connected at ${baudRate} baud.`);
+}
+
+async function connect() {
+  try {
+    const p = await navigator.serial.requestPort();
+    await openPort(p);
+  } catch (e) {
+    log("Connect failed: " + e.message);
+    setStatus("Not connected", false);
+  }
+}
+
+async function disconnect() {
+  try {
+    if (writer) { writer.releaseLock(); writer = null; }
+    if (port) { await port.close(); port = null; }
+  } catch (e) {
+    log("Disconnect problem: " + e.message);
+  }
+  setStatus("Not connected", false);
+  setConnected(false);
+  log("Disconnected.");
+}
+
+// Wraps each test so one failure shows in the log instead of failing silently.
+function run(label, fn) {
+  return async () => {
+    try {
+      log(label + "...");
+      await fn();
+      log(label + " sent.");
+    } catch (e) {
+      log(`${label} failed: ${e.message}`);
+    }
+  };
+}
+
+// ---- Tests ----------------------------------------------------------
+$("hello").onclick = run("Test line", async () => {
+  await sendBytes(CMD.init);
+  await printWrapped("Hello from Ex-voto. If you can read this, the printer works.");
+  await sendBytes(CMD.feed(3));
+});
+
+$("sample").onclick = run("Sample receipt", async () => {
+  const rule = "-".repeat(cols());
+  await sendBytes(CMD.init);
+  await sendBytes(CMD.alignCenter);
+  await sendBytes(CMD.boldOn);
+  await sendLine("EX-VOTO");
+  await sendBytes(CMD.boldOff);
+  await sendLine("carrying: Item 1");
+  await sendLine("departed from: Location 1");
+  await sendLine(new Date().toLocaleDateString());
+  await sendBytes(CMD.alignLeft);
+  await sendLine(rule);
+  await printWrapped("You begin your journey on a dock leading to a collection of intertwined wooden platforms.");
+  await sendLine("");
+  await printWrapped("You climb the ramped staircase, slippery with moss, barely able to see where you go next.");
+  await sendLine("");
+  await printWrapped("You choose the path to the right, ignoring the simpler path forward.");
+  await sendLine(rule);
+  await sendBytes(CMD.alignCenter);
+  await sendLine("Your memory is complete.");
+  await sendBytes(CMD.alignLeft);
+  await sendBytes(CMD.feed(4));
+});
+
+$("chars").onclick = run("Character test", async () => {
+  const fancy = "it\u2019s \u201Cquoted\u201D \u2013 dash \u2014 dash \u2026";
+  await sendBytes(CMD.init);
+  await sendLine("Plain: it's \"quoted\" - dash");
+  // Sent WITHOUT cleaning, to show why the cleaning step exists:
+  await writer.write(encoder.encode("Raw: " + fancy + "\n"));
+  await sendLine("Cleaned: " + toAscii(fancy));
+  await sendBytes(CMD.feed(3));
+});
+
+$("feed").onclick = run("Feed", async () => { await sendBytes(CMD.feed(4)); });
+
+$("printCustom").onclick = run("Custom text", async () => {
+  await sendBytes(CMD.init);
+  await printWrapped(els.custom.value);
+  await sendBytes(CMD.feed(3));
+});
+
+els.connect.onclick = connect;
+els.disconnect.onclick = disconnect;
+
+// ---- Startup --------------------------------------------------------
+(async () => {
+  if (!("serial" in navigator)) {
+    setStatus("Web Serial isn't available. Use Chrome or Edge on a desktop computer, on an https page.", false);
+    els.connect.disabled = true;
+    log("navigator.serial is missing in this browser.");
+    return;
+  }
+
+  navigator.serial.addEventListener("disconnect", () => {
+    writer = null;
+    port = null;
+    setStatus("Printer unplugged", false);
+    setConnected(false);
+    log("Printer was unplugged.");
+  });
+
+  // If this site was already given permission to a port, reconnect without a prompt.
+  const known = await navigator.serial.getPorts();
+  if (known.length) {
+    log(`Found ${known.length} previously allowed port(s). Reconnecting to the first...`);
+    try { await openPort(known[0]); }
+    catch (e) { log("Auto-reconnect failed: " + e.message); }
+  } else {
+    log("No previously allowed ports. Click Connect printer.");
+  }
+})();
+</script>
+</body>
+</html>
