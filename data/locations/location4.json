@@ -8,7 +8,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/01.png",
       "gif": null,
-      "text": "Duis aute irure dolor in reprehenderit in voluptate velit esse.",
+      "text": "You began your journey at the entrance of some type of fort. The sky was filled with a red glow and smoke from some not to distant fire. You ventured forward.",
       "continueLabel": "Continue",
       "next": "2"
     },
@@ -19,13 +19,13 @@
       "choices": [
         {
           "side": "left",
-          "text": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.",
+          "text": "Before you had the chance to get your grounding you were confronted with a choice. Nothing drew you to either direction but you chose left.",
           "label": "Continue this way",
           "next": "3"
         },
         {
           "side": "right",
-          "text": "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+          "text": "Before you had the chance to get your grounding you were confronted with a choice. Nothing drew you to either direction but you chose right.",
           "label": "Continue this way",
           "next": "4"
         }
