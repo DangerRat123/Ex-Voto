@@ -30,8 +30,8 @@ const Printer = (() => {
     LINE_DELAY_MS: 100,       // pause after each line of text
     CHUNK_ROWS: 60,           // picture rows sent per bitmap command (max 255)
     CHUNK_DELAY_MS: 0,        // extra pause after each picture chunk
-    HEAT: [7, 120, 50],       // ESC 7 settings
-    DENSITY: 74,              // DC2 # setting
+    HEAT: [7, 150, 50],
+    DENSITY: 138,              // DC2 # setting
     TITLE: "Ex-voto",                          // printed big, in the title screen's font
     TITLE_FONT_URL: "assets/fonts/Darinia.ttf", // same font file the title screen uses
     TITLE_WIDTH: 340,         // how wide the title is, in dots (max 384)
