@@ -35,7 +35,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/03.png",
       "gif": null,
-      "text": "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+      "text": "As you turned the corner nothing of your next steps were revealed. Just more bending paths of wood and debris stood in front of you.",
       "continueLabel": "Continue",
       "next": "5"
     },
@@ -43,7 +43,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/04.png",
       "gif": null,
-      "text": "Etiam porta sem malesuada magna mollis euismod.",
+      "text": "This direction was shadowed by tree and smoke. Nothing was clear in what was ahead. Regardless you moved forward.",
       "continueLabel": "Continue",
       "next": "16"
     },
@@ -51,7 +51,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/05.png",
       "gif": null,
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "text": "With the smoke in the air thickening you turned the corner and saw nothing but a lone barrel at the end of this path. You location was confusing to you but these hints of what this place was were building the story.",
       "continueLabel": "Continue",
       "next": "6"
     },
@@ -62,13 +62,13 @@
       "choices": [
         {
           "side": "left",
-          "text": "Duis aute irure dolor in reprehenderit in voluptate velit esse.",
+          "text": "Your next choice was infront of you. A clean simple path to the left or wading through the clutter to your right. You chose the simpler path.",
           "label": "Continue this way",
           "next": "7"
         },
         {
           "side": "right",
-          "text": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.",
+          "text": "Your next choice was infront of you. A clean simple path to the left or wading through the clutter to your right. You chose the cluttered path.",
           "label": "Continue this way",
           "next": "17"
         }
@@ -78,7 +78,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/07.png",
       "gif": null,
-      "text": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.",
+      "text": "The walls here were crooked and the air was thicker. A hesitation in this path slowed you down. To continue forward was to trust in where the jouney was taking you.",
       "continueLabel": "Continue",
       "next": "8"
     },
@@ -86,7 +86,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/08.png",
       "gif": null,
-      "text": "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+      "text": "Although hesitating you knew your journey was taking you in this direction for a reason so you could do nothing but confidently continued forward.",
       "continueLabel": "Continue",
       "next": "9"
     },
@@ -94,7 +94,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/09.png",
       "gif": null,
-      "text": "Etiam porta sem malesuada magna mollis euismod.",
+      "text": "Yet another turn and yet another indescript path forward. The turns felt monotonous and you hoped something soon changed.",
       "continueLabel": "Continue",
       "next": "10"
     },
@@ -102,7 +102,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/10.png",
       "gif": null,
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "text": "As you continued forward your hopes of something new felt met. A change in the journey was ahead, something seemingly less claustrophobic where the smoke eased.",
       "continueLabel": "Continue",
       "next": "11"
     },
@@ -110,7 +110,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/11.png",
       "gif": null,
-      "text": "Duis aute irure dolor in reprehenderit in voluptate velit esse.",
+      "text": "You approached an opening filed with debris. It seemed to have endless possiblities of where to go. You pushed forward hopeing to find some direction in where to go.",
       "continueLabel": "Continue",
       "next": "12"
     },
@@ -121,13 +121,13 @@
       "choices": [
         {
           "side": "left",
-          "text": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.",
+          "text": "A push forward definitivly narrowed down where to go. You had two options and you felt confident in which one to take. You pushed forward.",
           "label": "Continue this way",
           "next": "13"
         },
         {
           "side": "right",
-          "text": "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+          "text": "A push forward definitivly narrowed down where to go. You had two options and you felt confident in which one to take. You turned the corner.",
           "label": "Continue this way",
           "next": "36"
         }
@@ -137,7 +137,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/13.png",
       "gif": null,
-      "text": "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+      "text": "This path forward felt right. The smoke had eased and a breeze came. A warm comforting heat surrounded you as you continued.",
       "continueLabel": "Continue",
       "next": "14"
     },
@@ -145,7 +145,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/14.png",
       "gif": null,
-      "text": "Etiam porta sem malesuada magna mollis euismod.",
+      "text": "Another choice seemed to confront you but as a gust of wind approached from the left you knew that was where you had to go.",
       "continueLabel": "Continue",
       "next": "15"
     },
@@ -153,7 +153,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/15.png",
       "gif": null,
-      "text": "Your journey through the fort led to an open trap door leading to pitch blackness. It seemed as if all paths led here so you were confident in this being the journeys conclusion. You climbed without a doubt.",
+      "text": "This had led you to an open trap door leading to pitch blackness. It seemed as if all paths led here so you were confident in this being the journeys conclusion. You climbed in without a doubt.",
       "continueLabel": "Continue",
       "next": "ending-2"
     },
@@ -161,7 +161,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/16.png",
       "gif": null,
-      "text": "Duis aute irure dolor in reprehenderit in voluptate velit esse.",
+      "text": "Having turned the corner your way is lit and the decay of this place became obvious. Broken walls and rotting sandbags sit before you. You hoped the path was still navigable.",
       "continueLabel": "Continue",
       "next": "17"
     },
@@ -169,7 +169,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/17.png",
       "gif": null,
-      "text": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.",
+      "text": "You approached another corner and as you did the smoke felt thicker. You had doubts for you safety but despite this you contiued forward.",
       "continueLabel": "Continue",
       "next": "18"
     },
@@ -180,13 +180,13 @@
       "choices": [
         {
           "side": "left",
-          "text": "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+          "text": "You approached another choice. Neither path deterred you but something told you the path to the left was where you needed to go.",
           "label": "Continue this way",
           "next": "19"
         },
         {
           "side": "right",
-          "text": "Etiam porta sem malesuada magna mollis euismod.",
+          "text": "You approached another choice. Neither path deterred you but something told you the path to the right was where you needed to go.",
           "label": "Continue this way",
           "next": "28"
         }
@@ -196,7 +196,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/19.png",
       "gif": null,
-      "text": "Etiam porta sem malesuada magna mollis euismod.",
+      "text": "This path was strangely long, empty and straight. Its simplness was uncanny but you pushed forward regardless.",
       "continueLabel": "Continue",
       "next": "20"
     },
@@ -204,7 +204,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/20.png",
       "gif": null,
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "text": "Continuing forward the once seemingly simple path revealed openings which inevitibly would give you another decision to make.",
       "continueLabel": "Continue",
       "next": "21"
     },
@@ -215,13 +215,13 @@
       "choices": [
         {
           "side": "left",
-          "text": "Duis aute irure dolor in reprehenderit in voluptate velit esse.",
+          "text": "Your decision was ahead of you. The broken, decaying path to the left or the straight, simply path forward. You confidently chose left.",
           "label": "Continue this way",
           "next": "22"
         },
         {
           "side": "right",
-          "text": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.",
+          "text": "Your decision was ahead of you. The broken, decaying path to the left or the straight, simply path forward. You confidently chose right.",
           "label": "Continue this way",
           "next": "25"
         }
@@ -231,7 +231,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/22.png",
       "gif": null,
-      "text": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.",
+      "text": "The path was twisted and tighter than the rest. You squeezed through with hesitation.",
       "continueLabel": "Continue",
       "next": "23"
     },
@@ -239,7 +239,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/23.png",
       "gif": null,
-      "text": "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+      "text": "As you squeezed through the tight path became a large opening which gave you time to breath as the smoke was thinner here.",
       "continueLabel": "Continue",
       "next": "24"
     },
@@ -247,7 +247,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/24.png",
       "gif": null,
-      "text": "Etiam porta sem malesuada magna mollis euismod.",
+      "text": "The opening gave you too many decisions so you pushed forward hoping this would narrow down your options.",
       "continueLabel": "Continue",
       "next": "12"
     },
@@ -255,7 +255,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/25.png",
       "gif": null,
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "text": "As you pushed forward the long path became a sharp corner. A corner you had no option but to take. Although restricted a confidence in this path filled you.",
       "continueLabel": "Continue",
       "next": "26"
     },
@@ -263,7 +263,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/26.png",
       "gif": null,
-      "text": "Duis aute irure dolor in reprehenderit in voluptate velit esse.",
+      "text": "One corner became another and with this you were certain you were nearly there. This corner felt like the last so without hesitation you zipped around it.",
       "continueLabel": "Continue",
       "next": "27"
     },
@@ -271,7 +271,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/27.png",
       "gif": null,
-      "text": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.",
+      "text": "As you turned the corner you felt defeat. The path seemed to lead to nothing. However before you turned around you noticed something on the ground. You approached.",
       "continueLabel": "Continue",
       "next": "15"
     },
@@ -279,7 +279,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/28.png",
       "gif": null,
-      "text": "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+      "text": "As you pushed forward the path ahead seemed collapsed. You felt you had to commit to your decision so you pushed forward anyway.",
       "continueLabel": "Continue",
       "next": "29"
     },
@@ -287,7 +287,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/29.png",
       "gif": null,
-      "text": "Etiam porta sem malesuada magna mollis euismod.",
+      "text": "Although decayed the path seemed navigable. You shuffled forward carefully as not to cause further collapse.",
       "continueLabel": "Continue",
       "next": "30"
     },
@@ -295,7 +295,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/30.png",
       "gif": null,
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "text": "The tighter the path seemed to get the thicker the smoke and the tighter you chest. It was yet to be unbarable so you felt confident your journey could continue and you reach you goal.",
       "continueLabel": "Continue",
       "next": "31"
     },
@@ -303,7 +303,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/31.png",
       "gif": null,
-      "text": "Duis aute irure dolor in reprehenderit in voluptate velit esse.",
+      "text": "As you squeezed forward the path led to a corner. You hoped that turning this corner would lead to a path that would be a lot easier than it has been.",
       "continueLabel": "Continue",
       "next": "32"
     },
