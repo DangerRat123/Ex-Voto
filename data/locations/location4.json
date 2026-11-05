@@ -311,7 +311,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/32.png",
       "gif": null,
-      "text": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.",
+      "text": "The corner turned into another but with this one came a choice ahead of you. You oushed forward unsure of which turn you would make..",
       "continueLabel": "Continue",
       "next": "33"
     },
@@ -322,13 +322,13 @@
       "choices": [
         {
           "side": "left",
-          "text": "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+          "text": "This choice was between design and instinct. Left was a small gap you could squeeze through and felt the desire to do so. Forward was the direction this path was intended. You chose instinct.",
           "label": "Continue this way",
           "next": "26"
         },
         {
           "side": "right",
-          "text": "Etiam porta sem malesuada magna mollis euismod.",
+          "text": "This choice was between design and instinct. Left was a small gap you could squeeze through and felt the desire to do so. Forward was the direction this path was intended. You chose design.",
           "label": "Continue this way",
           "next": "34"
         }
@@ -338,7 +338,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/34.png",
       "gif": null,
-      "text": "Etiam porta sem malesuada magna mollis euismod.",
+      "text": "Thankfully the path widened and you continued forward. You felt a confidence you had nearly completed your journey and therefore you swiftly stepped pushed forward.",
       "continueLabel": "Continue",
       "next": "35"
     },
@@ -346,7 +346,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/35.png",
       "gif": null,
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "text": "Another choice seemed to confront you but as a gust of wind approached from the right you knew that was where you had to go.",
       "continueLabel": "Continue",
       "next": "15"
     },
@@ -354,7 +354,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/36.png",
       "gif": null,
-      "text": "Duis aute irure dolor in reprehenderit in voluptate velit esse.",
+      "text": "Another choice seemed to confront you but as a gust of wind approached from the front you knew that was where you had to go",
       "continueLabel": "Continue",
       "next": "27"
     }
