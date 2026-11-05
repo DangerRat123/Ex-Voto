@@ -153,7 +153,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/15.png",
       "gif": null,
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "text": "Your journey through the fort led to an open trap door leading to pitch blackness. It seemed as if all paths led here so you were confident in this being the journeys conclusion. You climbed without a doubt.",
       "continueLabel": "Continue",
       "next": "ending-2"
     },
