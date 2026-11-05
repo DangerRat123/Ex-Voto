@@ -25,24 +25,24 @@ const Printer = (() => {
     PICTURE_ASPECT: 1.0,      // 1 = true shape. Below 1 squashes the picture vertically, above 1 stretches it
     DOT_SCALE: 2,             // each dithered dot prints as 2x2
     CONTRAST: 1.25,
-    BRIGHTNESS: 1.0,          // was 1.10. Lower = more black dots = darker picture
+    BRIGHTNESS: 0.9,          // was 1.10. Lower = more black dots = darker picture
     FEED_LINES: 3,            // blank lines after the last line, to clear the tear bar
     LINE_DELAY_MS: 100,       // pause after each line of text
     CHUNK_ROWS: 60,           // picture rows sent per bitmap command (max 255)
     CHUNK_DELAY_MS: 0,        // extra pause after each picture chunk
     // Darkness controls. If prints are pale, raise HEAT_TIME and DENSITY a little at a time.
     HEAT_DOTS: 7,             // ESC 7: dots heated at once = (n+1) x 8. Lower = slower, steadier power
-    HEAT_TIME: 160,           // ESC 7: heating time (x10 us). Was 120. HIGHER = DARKER (max 255)
+    HEAT_TIME: 200,           // ESC 7: heating time (x10 us). Was 120. HIGHER = DARKER (max 255)
     HEAT_INTERVAL: 50,        // ESC 7: pause between heat cycles (x10 us)
-    DENSITY: 15,              // DC2 #: 0-31, darkness = 50% + 5% x n. Was 10 (100%). HIGHER = DARKER
+    DENSITY: 22,              // DC2 #: 0-31, darkness = 50% + 5% x n. Was 10 (100%). HIGHER = DARKER
     BREAK_TIME: 2,            // DC2 #: 0-7, cooling pause between cycles (x250 us). Leave at 2
     TITLE: "Ex-voto",                          // printed big, in the title screen's font
     TITLE_FONT_URL: "assets/fonts/Darinia.ttf", // same font file the title screen uses
     TITLE_WIDTH: 340,         // how wide the title is, in dots (max 384)
     TITLE_MAX_HEIGHT: 120,    // title is shrunk if it would be taller than this
     TITLE_PAD: 12,            // blank dots above and below the title
-    TITLE_THRESHOLD: 170,     // 0-255. Higher = bolder, fatter title strokes
-    TITLE_BOLD: 2,            // extra outline added to the title letters, in dots (0 = none)
+    TITLE_THRESHOLD: 190,     // 0-255. Higher = bolder, fatter title strokes
+    TITLE_BOLD: 3,            // extra outline added to the title letters, in dots (0 = none)
     TEXT_ALIGN: 1,            // story text: 0 = left, 1 = centre
     CONNECT_KEY: "F8",
     TEST_KEY: "F9",
