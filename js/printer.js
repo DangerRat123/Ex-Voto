@@ -32,7 +32,7 @@ const Printer = (() => {
     CHUNK_DELAY_MS: 0,        // extra pause after each picture chunk
     // Darkness controls. If prints are pale, raise HEAT_TIME and DENSITY a little at a time.
     HEAT_DOTS: 7,             // ESC 7: dots heated at once = (n+1) x 8. Lower = slower, steadier power
-    HEAT_TIME: 200,           // ESC 7: heating time (x10 us). Was 120. HIGHER = DARKER (max 255)
+    HEAT_TIME: 180,           // ESC 7: heating time (x10 us). Was 120. HIGHER = DARKER (max 255)
     HEAT_INTERVAL: 50,        // ESC 7: pause between heat cycles (x10 us)
     DENSITY: 22,              // DC2 #: 0-31, darkness = 50% + 5% x n. Was 10 (100%). HIGHER = DARKER
     BREAK_TIME: 2,            // DC2 #: 0-7, cooling pause between cycles (x250 us). Leave at 2
@@ -41,8 +41,8 @@ const Printer = (() => {
     TITLE_WIDTH: 340,         // how wide the title is, in dots (max 384)
     TITLE_MAX_HEIGHT: 120,    // title is shrunk if it would be taller than this
     TITLE_PAD: 12,            // blank dots above and below the title
-    TITLE_THRESHOLD: 190,     // 0-255. Higher = bolder, fatter title strokes
-    TITLE_BOLD: 3,            // extra outline added to the title letters, in dots (0 = none)
+    TITLE_THRESHOLD: 170,     // 0-255. Higher = bolder, fatter title strokes
+    TITLE_BOLD: 2,            // extra outline added to the title letters, in dots (0 = none)
     TEXT_ALIGN: 1,            // story text: 0 = left, 1 = centre
     CONNECT_KEY: "F8",
     TEST_KEY: "F9",
