@@ -51,7 +51,7 @@
       "type": "linear",
       "image": "assets/stills/location-4/05.png",
       "gif": null,
-      "text": "With the smoke in the air thickening you turned the corner and saw nothing but a lone barrel at the end of this path. You location was confusing to you but these hints of what this place was were building up.",
+      "text": "With the smoke in the air thickening you turned the corner and saw nothing but a lone barrel at the end of the path. You location was confusing to you but these hints of what this place was were building up.",
       "continueLabel": "Continue",
       "next": "6"
     },
@@ -186,7 +186,7 @@
         },
         {
           "side": "right",
-          "text": "You approached another choice. Neither path deterred you but something told you the path to the right was where you needed to go.You followed this instinct.",
+          "text": "You approached another choice. Neither path deterred you but something told you the path to the right was where you needed to go. You followed this instinct.",
           "label": "Continue this way",
           "next": "28"
         }
